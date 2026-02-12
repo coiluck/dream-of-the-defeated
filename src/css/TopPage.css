@@ -1,0 +1,38 @@
+.background-image {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+}
+
+.title-logo-image {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: clamp(150px, 25vw, 350px);
+  height: auto;
+}
+
+.button-container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.button-container.active {
+  animation: fadeUp 3s ease-out forwards;
+}
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    bottom: 0;
+    transform: translate(-50%, 100%);
+  }
+  to {
+    opacity: 1;
+    bottom: 10%;
+    transform: translate(-50%, 0);
+  }
+}

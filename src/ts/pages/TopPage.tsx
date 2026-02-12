@@ -1,21 +1,28 @@
 // ts/pages/TopPage.tsx
-import React from 'react';
-
-import { useNavigate } from "react-router-dom"; // インポートするだけでOK
+import { useNavigate } from "react-router-dom";
+import "../../css/TopPage.css";
+import { Button } from '../components/Button';
 
 export default function TopPage() {
-  const navigate = useNavigate(); // これさえあればどこへでも行ける
+  const navigate = useNavigate();
 
   return (
-    <div style={{ textAlign: 'center', padding: '50px' }}>
-      <h1>トップページ</h1>
-      <p>ロゴアニメーションが終わってここにきました。</p>
-
-      <div style={{ marginTop: '20px' }}>
-        {/* ボタンを押したら「/」つまりロゴに戻る */}
-        <button onClick={() => navigate('/')}>
-          もう一度ロゴを見る
-        </button>
+    <div className="page fade-in">
+      <img
+        src="/src/assets/images/TopPage/background.jpg"
+        alt="background"
+        className="background-image"
+      />
+      <img
+        src="/src/assets/images/TopPage/title_logo.svg"
+        alt="logo"
+        className="title-logo-image"
+      />
+      <div className="button-container active">
+        <Button text="New Game" onClick={() => navigate('/')} />
+        <Button text="Load Game" onClick={() => navigate('/')} />
+        <Button text="Options" onClick={() => navigate('/')} />
+        <Button text="Exit" onClick={() => navigate('/')} />
       </div>
     </div>
   );

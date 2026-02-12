@@ -57,7 +57,7 @@ function LogoPage() {
       <div className="logo-container">
         <div className="logo-image-container">
           <img
-            src="/src/assets/images/logo.svg"
+            src="/src/assets/images/LogoPage/logo.svg"
             className={`logo-image ${showText ? "fade-in" : ""}`}
             style={{ opacity: showText ? undefined : 0 }}
           />

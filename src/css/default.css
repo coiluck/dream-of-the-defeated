@@ -8,6 +8,7 @@ html, body {
   height: 100%;
   background-color: #1e1e1e;
   overflow: hidden;
+  font-size: clamp(0.875rem, 0.7rem + 0.5vw, 1.25rem);
 }
 
 button {

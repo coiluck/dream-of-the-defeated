@@ -1,0 +1,54 @@
+.button-component-container {
+  position: relative;
+  display: inline-block;
+}
+
+.button-component {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 30px;
+  background-color: #000;
+  color: #eee;
+  font-family: "Courier New", monospace;
+  font-size: 1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  border: 2px solid #ccc;
+  outline: none;
+  filter: url('#button-grunge-filter');
+  transition: all 0.3s ease;
+}
+/* ノイズテクスチャ */
+.button-component::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  opacity: 0.3;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='1'/%3E%3C/svg%3E");
+}
+/* 内側の枠 */
+.button-component::after {
+  content: "";
+  position: absolute;
+  top: 4px; left: 4px; right: 4px; bottom: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.2s ease-out;
+}
+.button-component:hover {
+  color: #fff;
+  border-color: #fff;
+}
+.button-component:hover::after {
+  border-color: #ffd700; /* Gold */
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.6), inset 0 0 8px rgba(255, 215, 0, 0.3);
+}
+.button-component:active {
+  transform: translateY(2px);
+  filter: url('#rpg-grunge-filter') brightness(0.8);
+}
