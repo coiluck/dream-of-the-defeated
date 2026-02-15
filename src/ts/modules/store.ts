@@ -5,9 +5,8 @@ interface SettingsState {
   masterVolume: number;
   bgmVolume: number;
   seVolume: number;
-  isMuteStartBgm: boolean;
-  isMuteMainBgm: boolean;
-  isMuteSE: boolean;
+  mainBgm: 'national' | 'custom';
+  customBgm: string;
   screenSize: 'window' | 'fullscreen';
   language: 'ja' | 'en';
   autoSaveInterval: 'weekly' | 'monthly' | 'never';
@@ -18,9 +17,8 @@ const initialSettingsState: SettingsState = {
   masterVolume: 8,
   bgmVolume: 4,
   seVolume: 8,
-  isMuteStartBgm: false,
-  isMuteMainBgm: false,
-  isMuteSE: false,
+  mainBgm: "national",
+  customBgm: "Devine_Fencer",
   screenSize: 'window',
   language: 'ja',
   autoSaveInterval: 'never',
@@ -52,8 +50,15 @@ export async function saveSettingsData() {
   await store.save();
 }
 
+import { bgm, se } from './music';
+
 export async function applyStore() {
   const settingsStore = await getSettingsStore();
   const storedSettings = await settingsStore.get<SettingsState>('settings');
   if (storedSettings) Object.assign(SettingState, storedSettings);
+  // musicに反映
+  bgm.setMasterVolume(SettingState.masterVolume);
+  bgm.setVolume(SettingState.bgmVolume);
+  se.setMasterVolume(SettingState.masterVolume);
+  se.setVolume(SettingState.seVolume);
 }

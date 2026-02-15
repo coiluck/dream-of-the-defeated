@@ -1,9 +1,15 @@
 {
-  "systemTitle": { "ja": "システム設定", "en": "System Settings" },
-  "languageLabel": { "ja": "言語", "en": "Language" },
-  "screenSizeLabel": { "ja": "画面サイズ", "en": "Screen Size" },
-  "windowMode": { "ja": "ウィンドウ", "en": "Window" },
-  "fullscreenMode": { "ja": "フルスクリーン", "en": "Fullscreen" },
-  "audioTitle": { "ja": "音声設定", "en": "Audio Settings" },
-  "gameplayTitle": { "ja": "ゲーム設定", "en": "Gameplay Settings" }
+  "optionsSystemTitle": { "ja": "システム設定", "en": "System Settings" },
+  "optionsLanguageLabel": { "ja": "言語", "en": "Language" },
+  "optionsScreenSizeLabel": { "ja": "画面サイズ", "en": "Screen Size" },
+  "optionsWindowMode": { "ja": "ウィンドウ", "en": "Window" },
+  "optionsFullscreenMode": { "ja": "フルスクリーン", "en": "Fullscreen" },
+  "optionsAudioTitle": { "ja": "音声設定", "en": "Audio Settings" },
+  "optionsMasterVolumeLabel": { "ja": "アプリの音量", "en": "Master Volume" },
+  "optionsBgmVolumeLabel": { "ja": "BGM音量", "en": "BGM Volume" },
+  "optionsSeVolumeLabel": { "ja": "SE音量", "en": "SE Volume" },
+  "optionsMainBgmLabel": { "ja": "ゲームのBGM", "en": "Game BGM" },
+  "optionsMainBgmDynamic": { "ja": "国に連動", "en": "National" },
+  "optionsMainBgmFixed": { "ja": "任意選択", "en": "Custom" },
+  "optionsGameplayTitle": { "ja": "ゲーム設定", "en": "Gameplay Settings" }
 }

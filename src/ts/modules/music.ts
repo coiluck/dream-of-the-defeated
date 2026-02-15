@@ -5,7 +5,8 @@ class BGMController {
   private ctx: AudioContext | null = null;
   private gainNode: GainNode | null = null;
   private currentSources: AudioBufferSourceNode[] = []; // 再生中のソース（IntroとLoop両方管理するため配列）
-  private volume: number = 0.5; // デフォルトボリューム
+  private masterVolume: number = 1.0;
+  private bgmVolume: number = 0.4;
   private FADE_TIME: number = 1.0; // 秒単位
 
   constructor() {
@@ -19,13 +20,21 @@ class BGMController {
     }
   }
 
+  private updateGain() {
+    if (this.gainNode && this.ctx) {
+      this.gainNode.gain.setTargetAtTime(this.masterVolume * this.bgmVolume, this.ctx.currentTime, 0.01);
+    }
+  }
+
+  // volumeは0.0 - 2.0
+  setMasterVolume(volume: number) {
+    this.masterVolume = Math.max(0, Math.min(2, volume));
+    this.updateGain();
+  }
   // volumeは0.0 - 1.0
   setVolume(volume: number) {
-    this.volume = Math.max(0, Math.min(1, volume));
-    if (this.gainNode && this.ctx) {
-      // 即座に変更するのではなく、ごく短時間で変更することでプチノイズを防ぐ
-      this.gainNode.gain.setTargetAtTime(this.volume, this.ctx.currentTime, 0.01);
-    }
+    this.bgmVolume = Math.max(0, Math.min(1, volume));
+    this.updateGain();
   }
 
   private async loadBuffer(url: string): Promise<AudioBuffer | null> {
@@ -58,7 +67,7 @@ class BGMController {
 
     // ボリュームをリセット
     this.gainNode.gain.cancelScheduledValues(this.ctx.currentTime);
-    this.gainNode.gain.setValueAtTime(this.volume, this.ctx.currentTime);
+    this.gainNode.gain.setValueAtTime(this.masterVolume * this.bgmVolume, this.ctx.currentTime);
     // file load
     const introUrl = `/assets/audio/bgm/${fileName}_intro.mp3`;
     const loopUrl = `/assets/audio/bgm/${fileName}_loop.mp3`;
@@ -140,12 +149,23 @@ export { bgm };
 
 class SEController {
   private audio: HTMLAudioElement | null = null;
-  private volume: number = 0;
+  private masterVolume: number = 1.0;
+  private seVolume: number = 1.0;
+
+  setMasterVolume(volume: number) {
+    this.masterVolume = Math.max(0, Math.min(2, volume));
+    this.updateVolume();
+  }
 
   setVolume(volume: number) {
-    this.volume = volume;
+    this.seVolume = volume;
+    this.updateVolume();
+  }
+
+  private updateVolume() {
     if (this.audio) {
-      this.audio.volume = this.volume;
+      const effective = this.masterVolume * this.seVolume;
+      this.audio.volume = Math.max(0, Math.min(1, effective));
     }
   }
 
@@ -154,7 +174,7 @@ class SEController {
     const extension = wavList.includes(fileName) ? '.wav' : '.mp3';
 
     this.audio = new Audio(`/assets/audio/se/${fileName}${extension}`);
-    this.audio.volume = this.volume;
+    this.audio.volume = this.seVolume;
     this.audio.play().catch((e) => {
       console.warn('再生に失敗しました:', e);
     });

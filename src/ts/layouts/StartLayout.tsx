@@ -3,12 +3,13 @@ import { Outlet } from "react-router-dom";
 import "../../css/StartLayout.css";
 import { bgm } from '../modules/music';
 import { useEffect } from 'react';
+import { SettingState } from '../modules/store';
 
 export default function StartLayout() {
   useEffect(() => {
     // 画面表示時
-    bgm.setVolume(0);
-    bgm.play("Devine_Fencer");
+    bgm.setVolume(SettingState.bgmVolume);
+    bgm.play("The_Final_Sovereign");
     // 画面遷移時
     return () => {
       bgm.fadeOut(1.0);
