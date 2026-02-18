@@ -148,7 +148,10 @@ export default function NewGamePage() {
         <Button text="BACK" onClick={() => navigate('/top')} />
         <Button
           text="START GAME"
-          onClick={() => console.log(`Start game as ${selectedId}`)}
+          onClick={() => {
+            console.log(`Start game as ${selectedId}`);
+            navigate('/game');
+          }}
           className={!selectedId ? 'disabled' : ''}
         />
       </div>

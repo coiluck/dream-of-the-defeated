@@ -6,6 +6,7 @@ import StartLayout from "./layouts/StartLayout";
 import TopPage from "./pages/TopPage";
 import NewGamePage from "./pages/NewGamePage";
 import OptionsPage from "./pages/OptionsPage";
+import GamePage from "./pages/GamePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           {/* <Route path="/load" element={<LoadPage />} /> */}
           <Route path="/options" element={<OptionsPage />} />
         </Route>
+        <Route path="/game" element={<GamePage />} />
       </Routes>
       {/* ボタン用のフィルター */}
       <svg style={{ width: 0, height: 0, position: 'absolute', pointerEvents: 'none' }}>

@@ -58,11 +58,11 @@
 
 /* 旗 */
 .new-game-flag-container {
+  position: relative;
   width: 100%;
+  margin-bottom: 10px;
   aspect-ratio: 3/2;
   border: 1px solid #000;
-  margin-bottom: 10px;
-  position: relative;
   overflow: hidden;
 }
 .new-game-flag-image {
@@ -71,11 +71,12 @@
 }
 .new-game-flag-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 0; left: 0; right: 0; bottom: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.1);
+  background: url('/assets/images/CountryFlags/flag_shadow.jpg') no-repeat center center;
+  background-size: contain;
+  mix-blend-mode: multiply;
 }
 
 .new-game-country-name {
@@ -129,7 +130,6 @@
   position: relative;
   width: 100%;
   padding: 2rem;
-  border: 1px solid #555;
   border-top: 3px solid #d4af37;
   box-shadow: 0 10px 30px rgba(0,0,0,0.8);
   background: transparent;
@@ -156,6 +156,7 @@
   position: absolute;
   inset: 0;
   background-color: rgba(20, 20, 20, 0.8);
+  border: 1px solid #555;
   z-index: -1;
   filter: url('#button-grunge-filter');
 }
@@ -195,6 +196,7 @@
 
 .new-game-panel-header h3 {
   font-size: 1.5rem;
+  filter: url('#button-grunge-filter');
 }
 .new-game-panel-metadata-item {
   display: flex;
